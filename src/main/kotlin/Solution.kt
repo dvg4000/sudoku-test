@@ -1,22 +1,25 @@
 class Solution private constructor(
-    val table: Array<Int>
+    val table: List<Int>
 ) {
-    fun row(i: Int): Array<Int> {
+    fun row(i: Int): List<Int> {
         val offset = i * SIDE_SIZE
-        return table.copyOfRange(offset, offset + SIDE_SIZE)
+        return table.subList(offset, offset + SIDE_SIZE)
     }
 
-    fun column(i: Int): Array<Int> {
-        return (0 until SIDE_SIZE).map { table[it * SIDE_SIZE + i] }.toTypedArray()
+    fun column(i: Int): List<Int> {
+        return (0 until SIDE_SIZE).map { table[it * SIDE_SIZE + i] }
     }
 
-    fun box3x3(col: Int, row: Int): Array<Int> {
+    fun box3x3(col: Int, row: Int): List<Int> {
+        val range = 0 until BOX_SIDE_SIZE
+        //if (col !in range) throw ArrayIndexOutOfBoundsException("`col` out of bounds")
+        //if (row !in range) throw ArrayIndexOutOfBoundsException("`row` out of bounds")
+
         val colOffset = col * BOX_SIDE_SIZE
         val rowOffset = row * BOX_SIDE_SIZE * SIDE_SIZE
-        return (0 until BOX_SIDE_SIZE)
-            .map { r -> (0 until BOX_SIDE_SIZE).map { c -> table[c + colOffset + r * SIDE_SIZE + rowOffset] } }
+        return range
+            .map { r -> range.map { c -> table[c + colOffset + r * SIDE_SIZE + rowOffset] } }
             .flatten()
-            .toTypedArray()
     }
 
     companion object {
@@ -29,7 +32,7 @@ class Solution private constructor(
             return when {
                 table.size != TABLE_SIZE -> Result.failure(IllegalStateException("Invalid table size"))
                 table.any { it !in valueRange } -> Result.failure(IllegalStateException("Table has invalid value"))
-                else -> Result.success(Solution(table.toTypedArray()))
+                else -> Result.success(Solution(table.toList()))
             }
         }
     }

@@ -8,10 +8,10 @@ fun checkSolution(fileName: String) {
 }
 
 fun printErrorAndUsage(e: Exception) {
-    println("Error: ${e.message}")
     println(
         """
-                
+            Error: ${e.message}   
+            
             Usage: 
             
             cat << EOF > solution.txt
