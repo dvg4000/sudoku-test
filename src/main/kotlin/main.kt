@@ -1,15 +1,17 @@
-fun main(args: Array<String>) {
-    try {
-        SolutionParser().parseFile(args[0])
-            .map { SolutionChecker().isValid(it) }
-            .fold(
-                { isValid -> if (isValid) println("Correct") else ("Incorrect") },
-                { e -> println("Error: $e") }
-            )
-    } catch (e: Exception) {
-        println("Error: ${e.message}")
-        println("""
+fun checkSolution(fileName: String) {
+    SolutionParser().parseFile(fileName)
+        .map { SolutionChecker().isValid(it) }
+        .fold(
+            { println(if (it) "Correct" else "Incorrect") },
+            { println("Error: ${it.message}") }
+        )
+}
 
+fun printErrorAndUsage(e: Exception) {
+    println("Error: ${e.message}")
+    println(
+        """
+                
             Usage: 
             
             cat << EOF > solution.txt
@@ -25,6 +27,14 @@ fun main(args: Array<String>) {
             EOF
             
             java -jar sudoku_test.jar solution.txt
-        """.trimIndent())
+        """.trimIndent()
+    )
+}
+
+fun main(args: Array<String>) {
+    try {
+        checkSolution(args[0])
+    } catch (e: Exception) {
+        printErrorAndUsage(e)
     }
 }
