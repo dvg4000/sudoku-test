@@ -4,7 +4,9 @@ import kotlin.test.assertTrue
 class SolutionParserTest {
     @Test
     fun test() {
-        val solution = SolutionParser().parseFile("src/test/resources/solution_valid.txt")
-        assertTrue(solution.isSuccess)
+        SolutionParser().parseFile("src/test/resources/solution_valid.txt")
+            .also { assertTrue(it.isSuccess) }
+        SolutionParser().parseFile("src/test/resources/solution_valid_1.txt")
+            .also { assertTrue(it.isSuccess) }
     }
 }
