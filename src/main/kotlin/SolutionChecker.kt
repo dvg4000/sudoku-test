@@ -1,8 +1,5 @@
-package usecase
-
-import model.Solution
-import model.Solution.Companion.BOX_SIDE_SIZE
-import model.Solution.Companion.SIDE_SIZE
+import Solution.Companion.BOX_SIDE_SIZE
+import Solution.Companion.SIDE_SIZE
 
 class SolutionChecker {
     fun isValid(solution: Solution): Boolean {

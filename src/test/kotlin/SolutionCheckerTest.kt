@@ -1,6 +1,4 @@
-import model.Solution
 import org.junit.Test
-import usecase.SolutionChecker
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -9,7 +7,7 @@ class SolutionCheckerTest {
 
     @Test
     fun testNotValid() {
-        val solution = arrayOf(
+        val solution = listOf(
             1, 2, 3,  4, 5, 6,  7, 8, 9,
             2, 2, 3,  4, 5, 6,  7, 8, 9,
             3, 2, 3,  4, 5, 6,  7, 8, 9,
@@ -27,7 +25,7 @@ class SolutionCheckerTest {
 
     @Test
     fun testValid() {
-        val solution = arrayOf(
+        val solution = listOf(
             2, 1, 5,  3, 9, 6,  4, 7, 8,
             6, 7, 9,  8, 4, 1,  3, 5, 2,
             3, 8, 4,  2, 7, 5,  1, 6, 9,

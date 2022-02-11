@@ -1,25 +1,30 @@
-import model.Solution
-import usecase.SolutionChecker
-
 fun main(args: Array<String>) {
-    val checker: SolutionChecker = SolutionChecker()
-    arrayOf( //@formatter:off
-        2, 1, 5,  3, 9, 6,  4, 7, 8,
-        6, 7, 9,  8, 4, 1,  3, 5, 2,
-        3, 8, 4,  2, 7, 5,  1, 6, 9,
+    try {
+        SolutionParser().parseFile(args[0])
+            .map { SolutionChecker().isValid(it) }
+            .fold(
+                { isValid -> if (isValid) println("Correct") else ("Incorrect") },
+                { e -> println("Error: $e") }
+            )
+    } catch (e: Exception) {
+        println("Error: ${e.message}")
+        println("""
 
-        1, 2, 6,  9, 8, 7,  5, 4, 3,
-        8, 4, 7,  6, 5, 3,  9, 2, 1,
-        9, 5, 3,  1, 2, 4,  7, 8, 6,
-
-        5, 3, 2,  7, 6, 9,  8, 1, 4,
-        4, 6, 1,  5, 3, 8,  2, 9, 7,
-        7, 9, 8,  4, 1, 2,  6, 3, 5,
-    ) // @formatter:on
-        .let { Solution.create(it)  }
-        .mapCatching { checker.isValid(it) }
-        .fold(
-            { if (it) println("Correct") else ("Incorrect") },
-            { e -> println("Error: $e") }
-        )
+            Usage: 
+            
+            cat << EOF > solution.txt
+            215396478
+            679841352
+            384275169
+            126987543
+            847653921
+            953124786
+            532769814
+            461538297
+            798412635
+            EOF
+            
+            java -jar sudoku_test.jar solution.txt
+        """.trimIndent())
+    }
 }

@@ -1,11 +1,10 @@
-import model.Solution
 import org.junit.Test
 import kotlin.test.assertTrue
 
 class SolutionTest {
     @Test
     fun test() {
-        val solution = arrayOf(
+        val solution = listOf(
             1, 2, 3,  4, 5, 6,  7, 8, 9,
             2, 2, 3,  4, 5, 6,  7, 8, 9,
             3, 2, 3,  4, 5, 6,  7, 8, 9,

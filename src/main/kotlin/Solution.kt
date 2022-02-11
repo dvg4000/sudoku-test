@@ -1,5 +1,3 @@
-package model
-
 class Solution private constructor(
     val table: Array<Int>
 ) {
@@ -26,12 +24,12 @@ class Solution private constructor(
         const val SIDE_SIZE = 9
         const val BOX_SIDE_SIZE = 3
 
-        fun create(table: Array<Int>): Result<Solution> {
+        fun create(table: Collection<Int>): Result<Solution> {
             val valueRange = IntRange(1, 9)
             return when {
                 table.size != TABLE_SIZE -> Result.failure(IllegalStateException("Invalid table size"))
                 table.any { it !in valueRange } -> Result.failure(IllegalStateException("Table has invalid value"))
-                else -> Result.success(Solution(table))
+                else -> Result.success(Solution(table.toTypedArray()))
             }
         }
     }
