@@ -1,3 +1,3 @@
 
-rootProject.name = "sudoku_test"
+rootProject.name = "sudoku-test"
 

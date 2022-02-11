@@ -26,7 +26,7 @@ fun printErrorAndUsage(e: Exception) {
             798412635
             EOF
             
-            java -jar sudoku_test.jar solution.txt
+            java -jar sudoku-test.jar solution.txt
         """.trimIndent()
     )
 }
