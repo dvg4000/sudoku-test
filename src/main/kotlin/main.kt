@@ -1,9 +1,8 @@
 import model.Solution
 import usecase.SolutionChecker
-import usecase.SolutionCheckerImpl
 
 fun main(args: Array<String>) {
-    val checker: SolutionChecker = SolutionCheckerImpl()
+    val checker: SolutionChecker = SolutionChecker()
     arrayOf( //@formatter:off
         2, 1, 5,  3, 9, 6,  4, 7, 8,
         6, 7, 9,  8, 4, 1,  3, 5, 2,
